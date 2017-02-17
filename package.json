@@ -1,0 +1,44 @@
+{
+  "name": "wrescuetime",
+  "version": "1.0.0",
+  "description": "Rescuetime API",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "npm run compile",
+    "compile": "babel src --out-dir dist",
+    "prepublish": "npm run compile",
+    "test": "doctoc README.md"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/willin/wrescuetime.git"
+  },
+  "keywords": [
+    "api",
+    "sdk",
+    "open",
+    "open-api"
+  ],
+  "author": "Willin Wang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willin/wrescuetime/issues"
+  },
+  "homepage": "https://github.com/willin/wrescuetime#readme",
+  "devDependencies": {
+    "babel-cli": "*",
+    "babel-eslint": "*",
+    "babel-plugin-transform-runtime": "*",
+    "babel-preset-latest": "*",
+    "eslint": "*",
+    "eslint-config-airbnb": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-jsx-a11y": "*",
+    "eslint-plugin-react": "*"
+  },
+  "dependencies": {
+    "babel-runtime": "*",
+    "debug": "*",
+    "request": "*"
+  }
+}
