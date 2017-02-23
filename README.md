@@ -31,7 +31,7 @@ wr.getData({
 
 ## 教程示例
 
-![status](http://singap.sh.gg:3333/icon)
+![status](http://test2.sh.gg:3333/icon)
 
 上图有三种状态：
 
@@ -117,13 +117,13 @@ app.use(route.get('/icon', async (ctx) => {
   const efficiency = parseFloat(row[4]);
   
   if (time > 60) {
-    ctx.redirect('https://go.sh.gg/images/offline.png');
+    ctx.redirect('http://example.com/offline.png');
   } else {
     if (efficiency > 90) {
-      ctx.redirect('https://go.sh.gg/images/busy.png');
+      ctx.redirect('http://example.com/busy.png');
     }
     else {
-      ctx.redirect('https://go.sh.gg/images/online.png');
+      ctx.redirect('http://example.com/online.png');
     }
   }
 }));
