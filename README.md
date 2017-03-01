@@ -31,7 +31,13 @@ wr.getData({
 
 ## 教程示例
 
-![status](http://test2.sh.gg:3333/icon)
+此图为我的在线状态：
+
+![status](https://up.js.cool/icon/willin)
+
+此图为另一个小伙伴：
+
+![status](https://up.js.cool/icon/zhangyf)
 
 上图有三种状态：
 
