@@ -33,11 +33,11 @@ wr.getData({
 
 此图为我的在线状态：
 
-![status](https://up.js.cool/icon/willin)
+![status](https://up.js.cool/willin/icon)
 
 此图为另一个小伙伴：
 
-![status](https://up.js.cool/icon/zhangyf)
+![status](https://up.js.cool/zhangyf/icon)
 
 上图有三种状态：
 
