@@ -1,4 +1,4 @@
-import request from 'request';
+const request = require('request');
 
 const getDefer = () => {
   const deferred = {};
@@ -15,6 +15,7 @@ class Wr {
   }
 
   getData(form) {
+    /* eslint-disable no-param-reassign */
     form.key = this.key;
     form.type = 'json';
     const deferred = getDefer();

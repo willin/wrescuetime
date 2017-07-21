@@ -1,12 +1,9 @@
 {
   "name": "wrescuetime",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "description": "Rescuetime API",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "npm run compile",
-    "compile": "babel src --out-dir dist",
-    "prepublish": "npm run compile",
     "test": "doctoc README.md"
   },
   "repository": {
@@ -26,18 +23,10 @@
   },
   "homepage": "https://github.com/willin/wrescuetime#readme",
   "devDependencies": {
-    "babel-cli": "*",
-    "babel-eslint": "*",
-    "babel-plugin-transform-runtime": "*",
-    "babel-preset-latest": "*",
-    "eslint": "*",
-    "eslint-config-airbnb": "*",
-    "eslint-plugin-import": "*",
-    "eslint-plugin-jsx-a11y": "*",
-    "eslint-plugin-react": "*"
+    "eslint": "^4.2.0",
+    "eslint-config-dwing": "^1.1.0"
   },
   "dependencies": {
-    "babel-runtime": "*",
     "debug": "*",
     "request": "*"
   }
