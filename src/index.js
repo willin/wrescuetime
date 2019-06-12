@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.headers.post.Accept = 'application/json';
+axios.defaults.headers.Accept = 'application/json';
 axios.defaults.baseURL = 'https://www.rescuetime.com/anapi';
 axios.interceptors.response.use(({ data }) => data, error => Promise.reject(error));
 
