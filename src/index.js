@@ -1,46 +1,14 @@
-const request = require('request');
+const axios = require('axios');
 
-const getDefer = () => {
-  const deferred = {};
-  deferred.promise = new Promise((resolve, reject) => {
-    deferred.resolve = resolve;
-    deferred.reject = reject;
-  });
-  return deferred;
-};
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post.Accept = 'application/json';
+axios.defaults.baseURL = 'https://www.rescuetime.com/anapi';
+axios.interceptors.response.use(({ data }) => data, error => Promise.reject(error));
 
-class Wr {
-  constructor(key) {
-    this.key = key;
-  }
-
-  getData(form) {
-    /* eslint-disable no-param-reassign */
-    form.key = this.key;
-    form.type = 'json';
-    const deferred = getDefer();
-    request({
-      method: 'POST',
-      url: 'https://www.rescuetime.com/anapi/data',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        Accept: 'application/json'
-      },
-      timeout: 10000,
-      form
-    }, (err, res) => {
-      if (err) {
-        deferred.reject(err);
-      } else {
-        try {
-          deferred.resolve(JSON.parse(res.body));
-        } catch (e) {
-          deferred.reject(err);
-        }
-      }
-    });
-    return deferred.promise;
-  }
-}
-
-module.exports = Wr;
+module.exports = key => ({
+  analyticData: form => axios.get('/data', { type: 'json', params: { key, ...form } }),
+  dailySummaryFeed: form => axios.get('/daily_summary_feed', { params: { key, ...form } }),
+  alertsFeed: form => axios.get('/alerts_feed', { param: { key, ...form } }),
+  highlightsFeed: form => axios.get('/highlights_feed', { params: { key, ...form } }),
+  highlightsPost: form => axios.post('/highlights_post', undefined, { params: { key, ...form } })
+});

@@ -1,6 +1,6 @@
 # WRescuetime
 
-[![npm](https://img.shields.io/npm/v/wrescuetime.svg?style=plastic)](https://npmjs.org/package/wrescuetime) [![npm](https://img.shields.io/npm/dm/wrescuetime.svg?style=plastic)](https://npmjs.org/package/wrescuetime) [![npm](https://img.shields.io/npm/dt/wrescuetime.svg?style=plastic)](https://npmjs.org/package/wrescuetime)
+[![github](https://img.shields.io/github/followers/willin.svg?style=social&label=Followers)](https://github.com/willin)  [![npm](https://img.shields.io/npm/v/wrescuetime.svg)](https://npmjs.org/package/wrescuetime) [![npm](https://img.shields.io/npm/dm/wrescuetime.svg)](https://npmjs.org/package/wrescuetime) [![npm](https://img.shields.io/npm/dt/wrescuetime.svg)](https://npmjs.org/package/wrescuetime) [![codebeat badge](https://codebeat.co/badges/0d123239-5db0-439c-b40f-c0a23ea73194)](https://codebeat.co/projects/github-com-willin-wrescuetime-master)
 
 ## 介绍
 
@@ -12,15 +12,20 @@
 
 国际惯例：
 
-```
+```bash
+yarn add wrescuetime
+# 或
 npm install wrescuetime --save
 ```
 
+使用示例：
+
 ```js
 const Wr = require('wrescuetime');
-const wr = new Wr('full_key');
+const wr = WR('full_key');
 
-wr.getData({
+// Analytic Data
+wr.analyticData({
   rs: 'minute',
   pv: 'interval',
   rk: 'efficiency'
@@ -29,21 +34,15 @@ wr.getData({
 });
 ```
 
-## 教程示例
+支持方法：
 
-此图为我的在线状态：
+- analyticData
+- dailySummaryFeed
+- alertsFeed
+- highlightsFeed
+- highlightsPost
 
-![status](https://up.js.cool/willin/icon)
-
-此图为另一个小伙伴：
-
-![status](https://up.js.cool/zhangyf/icon)
-
-上图有三种状态：
-
-* 红色：忙碌中，请勿打扰
-* 绿色：在线
-* 灰色：离线
+API 文档参考： https://www.rescuetime.com/anapi/setup/documentation
 
 ### 分步教程
 
@@ -74,7 +73,7 @@ const Koa = require('koa');
 const route = require('koa-route');
 const redisClient = require('wulian-redis');
 
-const wr = new Wr('输入你的 Key');
+const wr = Wr('输入你的 Key');
 moment.locale('zh-CN');
 const redis = redisClient();
 
@@ -85,7 +84,7 @@ const app = new Koa();
 app.use(route.get('/', async (ctx) => {
   let data = await redis.get('rescuetime');
   if (data === null) {
-    data = await wr.getData({
+    data = await wr.analyticData({
       rs: 'minute',
       pv: 'interval',
       rk: 'efficiency'
@@ -102,14 +101,14 @@ app.use(route.get('/', async (ctx) => {
     time,
     efficiency,
     date: row[0]
-  }; 
+  };
 }));
 
 // 图片链接跳转
 app.use(route.get('/icon', async (ctx) => {
   let data = await redis.get('rescuetime');
   if (data === null) {
-    data = await wr.getData({
+    data = await wr.analyticData({
       rs: 'minute',
       pv: 'interval',
       rk: 'efficiency'
@@ -121,7 +120,7 @@ app.use(route.get('/icon', async (ctx) => {
   const row = data.rows[data.rows.length - 1];
   const time = Math.abs(moment(row[0]).diff()) / 60000;
   const efficiency = parseFloat(row[4]);
-  
+
   if (time > 60) {
     ctx.redirect('http://example.com/offline.png');
   } else {
@@ -143,12 +142,16 @@ app.listen(3000);
 * 效率大于90%判断为忙碌，请勿打扰
 * 其他在线状况则显示默认在线
 
+## 相关项目推荐
+
+- 该SDK实际项目示例： https://github.com/willin/up.js.cool
+- 微信小程序SDK： https://github.com/willin/mp-sdk
+- 阿里云SDK： https://github.com/willin/waliyun
+- 腾讯云SDK： https://github.com/willin/wqcloud
+- 网易云音乐SDK： https://github.com/willin/wnm
+
 ## License
 
-MIT
+Apache 2.0
 
-通过支付宝捐赠：
-
-![qr](https://cloud.githubusercontent.com/assets/1890238/15489630/fccbb9cc-2193-11e6-9fed-b93c59d6ef37.png)
-
-
+<img width="483" alt="donate" src="https://user-images.githubusercontent.com/1890238/59274374-cd594300-8c8c-11e9-8ee8-fe9be4b49cdb.png">

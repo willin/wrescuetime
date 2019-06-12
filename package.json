@@ -1,6 +1,6 @@
 {
   "name": "wrescuetime",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Rescuetime API",
   "main": "src/index.js",
   "scripts": {
@@ -17,17 +17,17 @@
     "open-api"
   ],
   "author": "Willin Wang",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/willin/wrescuetime/issues"
   },
   "homepage": "https://github.com/willin/wrescuetime#readme",
   "devDependencies": {
-    "eslint": "^4.2.0",
-    "eslint-config-dwing": "^1.1.0"
+    "eslint": "^5.16.0",
+    "eslint-config-willin": "^1.0.2"
   },
   "dependencies": {
-    "debug": "*",
-    "request": "*"
+    "axios": "^0.19.0",
+    "debug": "*"
   }
 }
